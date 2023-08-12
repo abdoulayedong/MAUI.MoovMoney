@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoovMoney.CustomControls.CircularItemView"
+             x:Name="View"
+             xmlns:converters="clr-namespace:MoovMoney.Converters">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:EnumToTextConverter x:Key="EnumToTextConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <StackLayout BindingContext="{Binding Source={x:Reference View}}"
+                 Orientation="{Binding Orientation}"
+                 x:Name="container">
+        <StackLayout.Triggers>
+            <DataTrigger TargetType="StackLayout"
+                                     Binding="{Binding Source={x:Reference container}, Path=Orientation}"
+                                     Value="{x:Static StackOrientation.Horizontal}">
+                <Setter Property="VerticalOptions" Value="Start" />
+            </DataTrigger>
+            <DataTrigger TargetType="StackLayout"
+                                     Binding="{Binding Source={x:Reference container}, Path=Orientation}"
+                                     Value="{x:Static StackOrientation.Vertical}">
+
+            </DataTrigger>
+        </StackLayout.Triggers>
+        <Frame HeightRequest="{Binding ServiceIconHeight}"
+                   WidthRequest="{Binding ServiceIconWidth}"
+                   BackgroundColor="{Binding ServiceBackgroundColor}"
+                   BorderColor="{StaticResource BackgroundColor}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   CornerRadius="60"
+                   HasShadow="False"
+                   Margin="0"
+                   Padding="0"
+                   x:Name="serviceIcon">
+
+            <Image Source="{Binding ServiceIcon}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Scale="{Binding ServiceIconScale}"/>
+        </Frame>
+        <StackLayout Spacing="0" VerticalOptions="Center">
+            <Label Text="{Binding ServiceName}"
+                       x:Name="serviceName">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding Source={x:Reference container}, Path=Orientation}"
+                                     Value="{x:Static StackOrientation.Horizontal}">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding Source={x:Reference container}, Path=Orientation}"
+                                     Value="{x:Static StackOrientation.Vertical}">
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="WidthRequest" Value="80" />
+                        <Setter Property="LineBreakMode" Value="WordWrap" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="HorizontalOptions" Value="Center" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Text="{Binding ServiceDomain, Converter={StaticResource EnumToTextConverter}}"
+                       x:Name="serviceDomain">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding Source={x:Reference container}, Path=Orientation}"
+                                     Value="{x:Static StackOrientation.Horizontal}">
+                        <Setter Property="IsVisible" Value="true" />
+                        <Setter Property="FontSize" Value="14"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding Source={x:Reference container}, Path=Orientation}"
+                                     Value="{x:Static StackOrientation.Vertical}">
+                        <Setter Property="IsVisible" Value="false" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoovMoney.Pages.HomeTabPage"
+             Shell.BackgroundColor="Transparent"
+             xmlns:cc="clr-namespace:MoovMoney.CustomControls"
+             Title="Home"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Priority="0" Order="Primary">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{DynamicResource IconSearch}"
+                                 Size="Large"
+                                 FontFamily="FA-S" Color="Black"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem  Priority="1" Order="Primary">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{DynamicResource IconBell}"
+                                 Size="25"
+                                 FontFamily="FA-S" Color="Black"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Margin="15, 0">
+                <Frame HorizontalOptions="Start"
+                       Padding="15,8,15,8"
+                       CornerRadius="10"
+                       HasShadow="False"
+                       Margin="0,0,0,10">
+                    <Label Text="Principal account"
+                           FontAttributes="Bold"
+                           TextColor="Black"/>
+                </Frame>
+
+                <Frame CornerRadius="10"
+                       HasShadow="False"
+                       HeightRequest="180"
+                       BackgroundColor="White">
+                    <!--<Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShowOrHideBalanceCommand}" />
+                    </Frame.GestureRecognizers>-->
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Margin="0, 15"
+                                     Spacing="10">
+                            <Label FontFamily="FA-R"
+                                   FontSize="Large"
+                                   Text="{StaticResource IconEye}"
+                                   TextColor="{StaticResource MainColor}"/>
+                            <Label Text="Show balance"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextTransform="Uppercase"
+                                   TextColor="{StaticResource MainColor}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="EndAndExpand"
+                                     Margin="0,0,0,5">
+                            <Label Text="Last transaction"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="See More"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource MainColor}"
+                                   TextTransform="Uppercase"/>
+                        </StackLayout>
+                        <cc:TransactionItemView Margin="0,5,0,0" />
+                    </StackLayout>
+                </Frame>
+
+                <Label Text="My services"
+                       Margin="0,15"
+                       FontAttributes="Bold"
+                       FontSize="Subtitle"
+                       TextColor="Black"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <cc:ServicesItemView Grid.Column="0" 
+                                         ServiceIcon="phone.png" 
+                                         ServiceName="Top up credit"
+                                         ServiceIconRotation="-5"/>
+                    <cc:ServicesItemView Grid.Column="1" 
+                                         ServiceIcon="phoneexchange.png" 
+                                         ServiceName="Transfer money"
+                                         ServiceIconRotation="-5"/>
+                    <cc:ServicesItemView Grid.Column="2" 
+                                         ServiceIcon="phonewithdrawal.png" 
+                                         ServiceName="Cash withdrawal"
+                                         ServiceIconRotation="8"/>
+                </Grid>
+
+                <Grid Margin="0,20,0,7" HeightRequest="120">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <cc:CircularItemView Grid.Column="0" 
+                                         ServiceIcon="basket.png" 
+                                         ServiceBackgroundColor="White" 
+                                         ServiceName="Pay a merchant"
+                                         ServiceIconScale="0.6"/>
+                    <cc:CircularItemView Grid.Column="1" 
+                                         ServiceIcon="payyourshopping.png" 
+                                         ServiceBackgroundColor="White" 
+                                         ServiceName="Pay your shopping"
+                                         ServiceIconScale="0.5"/>
+                    <cc:CircularItemView Grid.Column="2" 
+                                         ServiceIcon="referral.png" 
+                                         ServiceBackgroundColor="White" 
+                                         ServiceName="Referral"
+                                         ServiceIconScale="0.65"/>
+                    <cc:CircularItemView Grid.Column="3" 
+                                         ServiceIcon="bundles.png" 
+                                         ServiceBackgroundColor="Black" 
+                                         ServiceName="Buy bundles"
+                                         ServiceIconScale="0.5"/>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal"
+                             >
+                    <Label Text="Favorite partners"
+                           FontAttributes="Bold"
+                           FontSize="Subtitle"
+                           TextColor="Black"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Label Text="See more"
+                                   FontAttributes="Bold"
+                           VerticalOptions="Center"
+                                   TextColor="{StaticResource MainColor}"
+                                   TextTransform="Uppercase"/>
+                </StackLayout>
+
+                <CollectionView ItemsSource="{Binding FavoritePartners}"
+                                VerticalOptions="Start"
+                                HeightRequest="110"
+                                Margin="0,7">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="0"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <cc:CircularItemView ServiceName="{Binding ServiceName}" 
+                                                 ServiceBackgroundColor="{Binding ServiceBackgroundColor}"
+                                                 ServiceIcon="{Binding ServiceIcon}"
+                                                 ServiceIconScale="{Binding ServiceIconScale}"
+                                                 ServiceIconHeight="60"
+                                                 ServiceIconWidth="60"
+                                                 Orientation="Vertical"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Tips"
+                       Margin="0,5,0,10"
+                       FontAttributes="Bold"
+                       FontSize="Subtitle"
+                       TextColor="Black"/>
+
+                <StackLayout Spacing="15" Margin="0,0,0,10">
+                    <cc:TipsItemView TipsName="Share"
+                                     TipsDescription="ShareText"
+                                     TipsIcon="share.png"/>
+                    <cc:TipsItemView TipsName="Scan"
+                                     TipsDescription="ScanText"
+                                     TipsIcon="share.png"/>
+                </StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

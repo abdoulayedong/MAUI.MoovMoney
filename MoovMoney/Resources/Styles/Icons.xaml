@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+					 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+	<x:String x:Key="IconSearch">&#xf002;</x:String>
+	<x:String x:Key="IconBell">&#xf0a2;</x:String>
+	<x:String x:Key="IconEye">&#xf06e;</x:String>
+	<x:String x:Key="IconHouse">&#xf015;</x:String>
+	<x:String x:Key="IconArrowRightLeft">&#x21c4;</x:String>
+	<x:String x:Key="IconUser">&#xf007;</x:String>
+	<x:String x:Key="IconCirularInfo">&#xf05a;</x:String>
+	<x:String x:Key="IconShare">&#xf1e0;</x:String>
+	<!--<x:String x:Key="">&#x;</x:String>
+	<x:String x:Key="">&#x;</x:String>-->
+</ResourceDictionary>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoovMoney.CustomControls.TransactionItemView">
+    <StackLayout Orientation="Horizontal">
+        <Frame BackgroundColor="SkyBlue" CornerRadius="20"
+                   HeightRequest="20" WidthRequest="20"
+                   Padding="10" Margin="0,0,10,0">
+            <Label Text="{StaticResource IconUser}"
+                       TextColor="White"
+                       FontFamily="FA-S"
+                       FontSize="20" HorizontalOptions="Center"/>
+        </Frame>
+        <StackLayout Spacing="0" VerticalOptions="Center"
+                         HorizontalOptions="Start">
+            <Label Text="6 94 97 81 39"
+                       Margin="0,0,0,0"/>
+            <Label Text="Money transfer"/>
+        </StackLayout>
+        <StackLayout Spacing="0" VerticalOptions="Center"
+                         HorizontalOptions="EndAndExpand">
+            <Label Text="- CFA 1,500"
+                       HorizontalOptions="EndAndExpand"/>
+            <Label Text="19:16"
+                       HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+    </StackLayout>
+</ContentView>
